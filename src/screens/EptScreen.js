@@ -143,17 +143,17 @@ export default function EptScreen() {
                 if( VoltLevel == 11 ){ 
                         setModel2D(pic11kv) ; setAcsrConductor('Pheasant') ; setGroundClearance(4) 
                         setInsulatorType('Pin insulator') ; setDamper('Stock Bridge damper') ; setPoleType('Reinforced concrete(RCC) Poles') ;
-                        setSpan(65) ;  setCrossArea(20) ; setWeightOfConductor(0.873) ; setNumOfPins(1)  
+                        setSpan(65) ;  setCrossArea(20) ; setWeightOfConductor(0.873) ; setNumOfPins(1)  ;setTension(282.5)
                 }
                 if( VoltLevel == 66 ){ 
                         setModel2D(pic66kv) ; setAcsrConductor('Drake') ; setGroundClearance(14.64) 
                         setInsulatorType('Post/ strain insulator') ; setDamper('Stock Bridge damper') ; setPoleType('Latticed  Poles') ;
-                        setSpan(225) ;  setCrossArea(20) ; setWeightOfConductor(0.873) ; setNumOfPins(6) ; 
+                        setSpan(225) ;  setCrossArea(20) ; setWeightOfConductor(0.873) ; setNumOfPins(6) ; setTension(2002.5)
                 }
                 if( VoltLevel == 132 ){ 
                         setModel2D(pic132kv) ; setAcsrConductor('Pheasant') ; setGroundClearance(12) 
                         setInsulatorType('Strain insulator') ; setDamper('Stock Bridge damper') ; setPoleType('Latticed  Poles') ;
-                        setSpan(305) ;  setCrossArea(300) ; setWeightOfConductor(0.873) ; setNumOfPins(12) ; 
+                        setSpan(305) ;  setCrossArea(300) ; setWeightOfConductor(0.573) ; setNumOfPins(12) ; setTension(2002.5)
                 }
                 if( VoltLevel == 220 ){ 
                         setModel2D(pic220kv) ; setAcsrConductor('Drake') ; setGroundClearance(27) ; setResistance(0.0898)
