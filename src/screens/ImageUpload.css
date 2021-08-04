@@ -145,11 +145,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: white;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   
 }
 #root {
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   height: 100%;
 }
 

@@ -64,6 +64,8 @@ export default function EptScreen() {
         const [Regulations, setRegulations] = useState(0)
         const [RegImpRadius, setRegImpRadius] = useState(0)
         const [RegImpSpacing, setRegImpSpacing] = useState(0)
+        const [OptimizeLesser, setOptimizeLesser] = useState(false)
+        
 
         const cg = { color : 'green' , fontSize:'17px' , fontFamily :'cursive' }
 
@@ -111,11 +113,7 @@ export default function EptScreen() {
                 setRadiusOfConductor(Number(RadiusOfConductor))
                 setConductorSpacing(Number(ConductorSpacing))
                 setFrequency(Number(Frequency))
-
-                
-
-                
-                
+                setOptimizeLesser(false)
                 
 
 
@@ -149,17 +147,17 @@ export default function EptScreen() {
                 }
                 if( VoltLevel == 66 ){ 
                         setModel2D(pic66kv) ; setAcsrConductor('Drake') ; setGroundClearance(14.64) 
-                        setInsulatorType('Post/ strain insulator') ; setDamper('Stock Bridge damper') ; setPoleType('Reinforced concrete(RCC) Poles') ;
+                        setInsulatorType('Post/ strain insulator') ; setDamper('Stock Bridge damper') ; setPoleType('Latticed  Poles') ;
                         setSpan(225) ;  setCrossArea(20) ; setWeightOfConductor(0.873) ; setNumOfPins(6) ; 
                 }
                 if( VoltLevel == 132 ){ 
                         setModel2D(pic132kv) ; setAcsrConductor('Pheasant') ; setGroundClearance(12) 
-                        setInsulatorType('Strain insulator') ; setDamper('Stock Bridge damper') ; setPoleType('Reinforced concrete(RCC) Poles') ;
+                        setInsulatorType('Strain insulator') ; setDamper('Stock Bridge damper') ; setPoleType('Latticed  Poles') ;
                         setSpan(305) ;  setCrossArea(300) ; setWeightOfConductor(0.873) ; setNumOfPins(12) ; 
                 }
                 if( VoltLevel == 220 ){ 
                         setModel2D(pic220kv) ; setAcsrConductor('Drake') ; setGroundClearance(27) ; setResistance(0.0898)
-                        setInsulatorType('String and suspension insulator') ; setDamper('Stock Bridge damper') ; setPoleType('Reinforced concrete(RCC) Poles') ;
+                        setInsulatorType('String and suspension insulator') ; setDamper('Stock Bridge damper') ; setPoleType('Latticed  Poles') ;
                         setSpan(250) ;  setCrossArea(20) ; setWeightOfConductor(0.973) ; setNumOfPins(20) ; setTension(2282.5)
                 }
                 if( VoltLevel == 500 ){ 
@@ -379,7 +377,8 @@ export default function EptScreen() {
                 </Col>
                 <Col>
                 <div className='text-center' >
-                {VoltLevel > 219 && <Button  onClick={()=>setOptimize(true)} variant={'success'} > <h1>Optimize</h1> </Button> }
+                {VoltLevel > 219 ? <Button  onClick={()=>setOptimize(true)} variant={'success'} > <h1>Optimize</h1> </Button> : 
+                <Button onClick={()=>setOptimizeLesser(true)} variant={'success'} >  <h1>Optimize</h1> </Button> }
                 {' '}<Pdf targetRef={ref} fixed={true} filename="transmission-data.pdf" options={options} x={.5} y={.5} scale={0.8} >
                 {({ toPdf }) => <Button onClick={toPdf} variant={'success'} ><h1>Save</h1></Button>}
                 </Pdf>
@@ -391,6 +390,13 @@ export default function EptScreen() {
                 
                 </Row>
                 <br/><br/>
+                {OptimizeLesser && <Container style={{background:'white',padding:'20px'}} >
+                        <div style={{color:'grey' , fontSize:'35px'}} >
+                        Transmission Power should be less than the SIL of the line and Power Factor Value should be near to 1
+                        for maximum line efficiency .Increasing the smoothness factor decreases Corona Loss.Maximum Value of 
+                        Smoothness Factor and Power Factor is 1.
+                        </div>  
+                </Container> }
                 {Optimize && <Container style={{background:'white',padding:'20px'}} >
                 <Row className='top'>
                 <Col sm='1' style={{color:'grey' , fontSize:'90px'}} >1) </Col>
